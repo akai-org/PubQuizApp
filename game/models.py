@@ -1,12 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import User
-
 
 class Team(models.Model):
     number_of_teammates = models.IntegerField('Liczba czlonkow druzyny')
     number_of_points = models.IntegerField('Liczba punktów')
-    name = models.TextField('Nazwa druzyny')
-    number = models.IntegerField(blank = True, null = True)
+    name_of_team = models.CharField(max_length=64,default='Nazwa druzyny')
+    overtime_number = models.IntegerField('Liczba podana w pytaniu dogrywkowym',blank = True, null = True,)
 
     
     def __str__(self):
