@@ -37,7 +37,6 @@ __pycache__/
 env/
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 lib/
@@ -89,6 +88,9 @@ local_settings.py
 db.sqlite3
 node_modules/
 .idea/
+static/dist/index.css
+static/dist/index.js
+package-lock.json
 
 # VS code
 .vscode/
