@@ -14,7 +14,7 @@ SECRET_KEY = 'f4z@znj4pt_e&lh9=#ulgicmypcj*$o04m)g^p8lnmvqd3tssx'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'pubquiz.akai.org.pl'
+    'pubquiz.akai.org.pl','localhost', '127.0.0.1'
 ]
 
 
@@ -94,7 +94,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'pl-pl'
+LANGUAGE_CODE = 'pl'
 
 TIME_ZONE = 'UTC'
 
