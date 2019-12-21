@@ -14,7 +14,7 @@ SECRET_KEY = 'f4z@znj4pt_e&lh9=#ulgicmypcj*$o04m)g^p8lnmvqd3tssx'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'pubquiz.akai.org.pl'
+    'pubquiz.akai.org.pl','localhost', '127.0.0.1'
 ]
 
 
