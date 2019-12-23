@@ -90,6 +90,9 @@ node_modules/
 .idea/
 static/dist/index.css
 static/dist/index.js
+static/dist/*.ttf
+static/dist/*.svg
+static/dist/*.eot
 package-lock.json
 
 # VS code
