@@ -1,0 +1,26 @@
+.ranking-table {
+  border-top: 4px solid gold;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+
+  .first-place-row {
+    color: gold;
+    font-weight: bold;
+  }
+
+  .second-place-row {
+    color: darkgray;
+    font-weight: bold;
+  }
+
+  .third-place-row {
+    color: saddlebrown;
+    font-weight: bold;
+  }
+
+  .closest-number-row {
+    color: green;
+    font-weight: bold;
+  }
+}
