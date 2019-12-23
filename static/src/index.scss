@@ -1,7 +1,14 @@
 @import '~bootstrap/scss/bootstrap';
 
 @import "scss/config";
+@import "scss/elements/footer";
+@import "scss/elements/main_container";
+@import "scss/elements/navbar";
+@import "scss/elements/wrap";
+@import "scss/elements/place_row";
+@import "scss/elements/winning_number";
 
 html, body {
   height: 100%;
+  background: #fdfcd2;
 }

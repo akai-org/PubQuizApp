@@ -1,0 +1,11 @@
+.footer {
+  position: relative;
+  margin-top: -$footerHeight;
+  height: $footerHeight;
+  clear:both;
+  padding-top:$footerHeight/5;
+  color: $light;
+  text-align: center;
+  background-color: darken($dark, 15);
+  border-top: gold 4px solid;
+}

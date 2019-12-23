@@ -5,10 +5,16 @@
     <title>{% block tiltle %}{% endblock %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'index.css' %}">
-    <link rel="shortcut icon" href="{% static 'img/coins.ico' %}">
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}">
 </head>
 <body>
-    {% block layout %}{% endblock %}
+    {% include 'includes/navbar.html' %}
+    <div class="wrap" id="app">
+        <div class="container-fluid main-container">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    {% include 'includes/footer.html' %}
     <script src="{% static 'index.js' %}"></script>
 </body>
 </html>

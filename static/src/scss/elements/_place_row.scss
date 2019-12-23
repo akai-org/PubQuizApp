@@ -1,0 +1,15 @@
+.first-place-row {
+  background: lighten(gold, 20);
+}
+
+.second-place-row {
+  background: lighten(silver, 10);
+}
+
+.third-place-row {
+  background: lighten(saddlebrown, 20);
+}
+
+.equal-place-row {
+  background: lighten($danger, 20) !important;
+}
