@@ -1,5 +1,7 @@
 from django.contrib import admin
-from.models import Team
+from preferences.admin import PreferencesAdmin
+
+from .models import Team, GamePreferences
 
 
 class TeamAdmin(admin.ModelAdmin):
@@ -17,3 +19,4 @@ class TeamAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Team, TeamAdmin)
+admin.site.register(GamePreferences, PreferencesAdmin)
