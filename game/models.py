@@ -3,13 +3,12 @@ from preferences.models import Preferences
 
 
 class Team(models.Model):
-    number_of_teammates = models.IntegerField('Liczba członków drużyny')
-    number_of_points = models.IntegerField('Liczba punktów', default=0)
-    name_of_team = models.CharField('Nazwa drużyny', max_length=80)
+    people = models.IntegerField('Liczba członków drużyny')
+    name = models.CharField('Nazwa drużyny', max_length=80)
     overtime_number = models.IntegerField('Liczba podana w pytaniu dogrywkowym', blank=True, null=True)
 
     def __str__(self):
-        return self.name_of_team
+        return self.name
 
 
 class GamePreferences(Preferences):

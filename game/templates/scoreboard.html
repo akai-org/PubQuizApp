@@ -19,54 +19,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="first-place-row">
-                            <td><i class="fa fa-trophy"></i></td>
-                            <td>1</td>
-                            <td>4</td>
-                            <td>Wściekłe borsuki</td>
-                            <td>12</td>
-                            <td>4</td>
-                            <td>3</td>
-                            <td>5</td>
-                            <td>823</td>
-                            <td></td>
-                        </tr>
-                        <tr class="second-place-row">
-                            <td><i class="fa fa-trophy"></i></td>
-                            <td>2</td>
-                            <td>5</td>
-                            <td>Akai Team</td>
-                            <td>8</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>4</td>
-                            <td>666</td>
-                            <td></td>
-                        </tr>
-                        <tr class="third-place-row">
-                            <td><i class="fa fa-trophy"></i></td>
-                            <td>3</td>
-                            <td>7</td>
-                            <td>Uczulone gąsiory</td>
-                            <td>6</td>
-                            <td>1</td>
-                            <td>0</td>
-                            <td>5</td>
-                            <td>324</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>4</td>
-                            <td>2</td>
-                            <td>Zacne wypieki</td>
-                            <td>5</td>
-                            <td>1</td>
-                            <td>1</td>
-                            <td>3</td>
-                            <td>9382</td>
-                            <td></td>
-                        </tr>
+                        {% for team in sorted_teams %}
+                            {% if forloop.counter == 1 %}
+                                <tr class="first-place-row">
+                                    <td><i class="fa fa-trophy"></i></td>
+                            {% elif forloop.counter == 2 %}
+                                <tr class="second-place-row">
+                                    <td><i class="fa fa-trophy"></i></td>
+                            {% elif forloop.counter == 3 %}
+                                <tr class="third-place-row">
+                                    <td><i class="fa fa-trophy"></i></td>
+                            {% else %}
+                                <tr>
+                                    <td></td>
+                            {% endif %}
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ team.people }}</td>
+                                    <td>{{ team.name }}</td>
+                                    <td>{{ team.total_point_sum|default_if_none:"-" }}</td>
+                                    <td>{{ team.first_round_sum|default_if_none:"-" }}</td>
+                                    <td>{{ team.second_round_sum|default_if_none:"-" }}</td>
+                                    <td>{{ team.third_round_sum|default_if_none:"-" }}</td>
+                                    <td>{{ team.overtime_number|default_if_none:"-" }}</td>
+                                    <td></td>
+                                </tr>
+                        {% endfor %}
                         <tr class="closest-number-row">
                             <td></td>
                             <td>4</td>
@@ -78,18 +55,6 @@
                             <td>2</td>
                             <td>628</td>
                             <td><i class="fa fa-bullseye"></i><i class="fa fa-exclamation"></i></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>5</td>
-                            <td>4</td>
-                            <td>Zgniłe mięso</td>
-                            <td>2</td>
-                            <td>2</td>
-                            <td>0</td>
-                            <td>0</td>
-                            <td>638</td>
-                            <td></td>
                         </tr>
                     </tbody>
                 </table>
@@ -109,11 +74,11 @@
                     </thead>
                     <tbody>
                         <tr class="reward-value-row">
-                            <td>50</td>
-                            <td>100 zl</td>
-                            <td>50 zł</td>
-                            <td>30 zł</td>
-                            <td>Wódka 0,7l</td>
+                            <td>{{ amount_of_people }}</td>
+                            <td>{{ preferences.GamePreferences.st_place_reward }} zł</td>
+                            <td>{{ preferences.GamePreferences.nd_place_reward }} zł</td>
+                            <td>{{ preferences.GamePreferences.rd_place_reward}} zł</td>
+                            <td>{{ preferences.GamePreferences.extra_reward }}</td>
                         </tr>
                     </tbody>
                 </table>

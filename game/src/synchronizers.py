@@ -4,8 +4,10 @@ from game.src.database import sum_value
 
 
 def recalculate_rewards():
-    number_of_people = sum_value(model=Team, column_name='number_of_teammates')
+    number_of_people = sum_value(model=Team, column_name='people')
     preferences = GamePreferences.objects.first()
+    if not number_of_people:
+        return
 
     entry_fee = preferences.entry_fee
     total_money_in = entry_fee * number_of_people
