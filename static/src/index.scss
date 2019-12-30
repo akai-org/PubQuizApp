@@ -1,6 +1,12 @@
 @import '~bootstrap/scss/bootstrap';
-
+@import '~@fortawesome/fontawesome-free/css/all.css';
 @import "scss/config";
+@import "scss/elements/footer";
+@import "scss/elements/main_container";
+@import "scss/elements/navbar";
+@import "scss/elements/wrap";
+@import "scss/elements/ranking_table";
+@import "scss/elements/reward_table";
 
 html, body {
   height: 100%;

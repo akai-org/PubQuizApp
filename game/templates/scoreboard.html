@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12">
+                {% if preferences.GamePreferences.game_status %}
+                <table class="table ranking-table">
+                    <thead class="thead-dark text-center">
+                        <tr>
+                            <th></th>
+                            <th>Miejsce</th>
+                            <th>Liczba członków</th>
+                            <th>Nazwa</th>
+                            <th>Suma punktów</th>
+                            <th>Punkty w 1. rundzie</th>
+                            <th>Punkty w 2. rundzie</th>
+                            <th>Punkty w 3. rundzie</th>
+                            <th>Odpowiedź w pytaniu dogrywkowym</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for team in sorted_teams %}
+
+                            {% if team.id == overtime_winning_team.pk %}
+                                <tr class="closest-number-row">
+                            {% elif forloop.counter == 1 %}
+                                <tr class="first-place-row">
+                            {% elif forloop.counter == 2 %}
+                                <tr class="second-place-row">
+                            {% elif forloop.counter == 3 %}
+                                <tr class="third-place-row">
+                            {% else %}
+                                <tr>
+                            {% endif %}
+
+                            {% if forloop.counter <= 3 %}
+                                    <td><i class="fa fa-trophy"></i></td>
+                            {% else %}
+                                    <td></td>
+                            {% endif %}
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ team.people }}</td>
+                                    <td>{{ team.name }}</td>
+                                    <td>{{ team.total_point_sum|default_if_none:"-" }}</td>
+                                    <td>{{ team.first_round_sum|default_if_none:"-" }}</td>
+                                    <td>{{ team.second_round_sum|default_if_none:"-" }}</td>
+                                    <td>{{ team.third_round_sum|default_if_none:"-" }}</td>
+                                    <td>{{ team.overtime_answer|default_if_none:"-" }}</td>
+                                    <td>
+                                        {% if team.pk == overtime_winning_team.pk %}
+                                            <i class="fa fa-bullseye"></i><i class="fa fa-exclamation"></i>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-borderless text-center reward-table">
+                    <thead>
+                        <tr class="reward-key-row">
+                            <th>Zarejestrowanych uczestników:</th>
+                            <th>Nagroda 1. miejsce:</th>
+                            <th>Nagroda 2. miejsce:</th>
+                            <th>Nagroda 3. miejsce:</th>
+                            <th>Nagroda za pytanie dogrywkowe:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="reward-value-row">
+                            <td>{{ amount_of_people }}</td>
+                            <td>{{ preferences.GamePreferences.st_place_reward }} zł</td>
+                            <td>{{ preferences.GamePreferences.nd_place_reward }} zł</td>
+                            <td>{{ preferences.GamePreferences.rd_place_reward}} zł</td>
+                            <td>{{ preferences.GamePreferences.extra_reward }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
