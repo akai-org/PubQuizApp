@@ -1,21 +1,24 @@
-from django.db.models import Sum, Q
+from django.db.models import Sum, Q, F
+from django.db.models.functions import Abs
 from django.shortcuts import render
-from .models import Team
-from .src.database import sum_value
+from .models import Team, GamePreferences
 
 
 def scoreboard(request):
-    sorted_teams = Team.objects.all().order_by('-total_point_sum').annotate(
+    correct_overtime_answer = GamePreferences.objects.first().overtime_question_value
+    sorted_teams = Team.objects.all().order_by('-total_point_sum', 'difference').annotate(
         total_point_sum=Sum("point_changes__scoring"),
         first_round_sum=Sum("point_changes__scoring", filter=Q(point_changes__round_number=1)),
         second_round_sum=Sum("point_changes__scoring", filter=Q(point_changes__round_number=2)),
-        third_round_sum=Sum("point_changes__scoring", filter=Q(point_changes__round_number=3))
+        third_round_sum=Sum("point_changes__scoring", filter=Q(point_changes__round_number=3)),
+        difference=Abs(F('overtime_answer') - correct_overtime_answer)
     )
-
-    total_people = sum_value(Team, 'people')
+    overtime_winning_team_pk = sorted_teams.order_by('difference').first().pk
+    total_people = sorted_teams.aggregate(Sum('people'))['people__sum']
     context = {
         'sorted_teams': sorted_teams,
-        'amount_of_people': total_people
+        'amount_of_people': total_people,
+        'overtime_winning_team_pk': overtime_winning_team_pk
     }
 
     return render(request, 'scoreboard.html', context)

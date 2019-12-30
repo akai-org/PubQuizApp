@@ -20,17 +20,22 @@
                     </thead>
                     <tbody>
                         {% for team in sorted_teams %}
-                            {% if forloop.counter == 1 %}
+
+                            {% if team.id == overtime_winning_team_pk %}
+                                <tr class="closest-number-row">
+                            {% elif forloop.counter == 1 %}
                                 <tr class="first-place-row">
-                                    <td><i class="fa fa-trophy"></i></td>
                             {% elif forloop.counter == 2 %}
                                 <tr class="second-place-row">
-                                    <td><i class="fa fa-trophy"></i></td>
                             {% elif forloop.counter == 3 %}
                                 <tr class="third-place-row">
-                                    <td><i class="fa fa-trophy"></i></td>
                             {% else %}
                                 <tr>
+                            {% endif %}
+
+                            {% if forloop.counter <= 3 %}
+                                    <td><i class="fa fa-trophy"></i></td>
+                            {% else %}
                                     <td></td>
                             {% endif %}
                                     <td>{{ forloop.counter }}</td>
@@ -40,22 +45,14 @@
                                     <td>{{ team.first_round_sum|default_if_none:"-" }}</td>
                                     <td>{{ team.second_round_sum|default_if_none:"-" }}</td>
                                     <td>{{ team.third_round_sum|default_if_none:"-" }}</td>
-                                    <td>{{ team.overtime_number|default_if_none:"-" }}</td>
-                                    <td></td>
+                                    <td>{{ team.overtime_answer|default_if_none:"-" }}</td>
+                                    <td>
+                                        {% if team.pk == overtime_winning_team_pk %}
+                                            <i class="fa fa-bullseye"></i><i class="fa fa-exclamation"></i>
+                                        {% endif %}
+                                    </td>
                                 </tr>
                         {% endfor %}
-                        <tr class="closest-number-row">
-                            <td></td>
-                            <td>4</td>
-                            <td>8</td>
-                            <td>Przegrywy</td>
-                            <td>5</td>
-                            <td>3</td>
-                            <td>0</td>
-                            <td>2</td>
-                            <td>628</td>
-                            <td><i class="fa fa-bullseye"></i><i class="fa fa-exclamation"></i></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>

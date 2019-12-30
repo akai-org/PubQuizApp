@@ -11,13 +11,13 @@ class PointChangeInline(admin.StackedInline):
 
 class TeamAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'people', 'overtime_number')
+    list_display = ('name', 'people', 'overtime_answer')
     search_fields = ['name']
     inlines = [PointChangeInline]
 
     def get_form(self, request, obj=None, **kwargs):
         if obj:
-            kwargs['fields'] = ['name', 'people', 'overtime_number']
+            kwargs['fields'] = ['name', 'people', 'overtime_answer']
         else:
             kwargs['fields'] = ['name', 'people']
         return super(TeamAdmin, self).get_form(request, obj, **kwargs)

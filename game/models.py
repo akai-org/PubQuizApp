@@ -5,7 +5,7 @@ from preferences.models import Preferences
 class Team(models.Model):
     people = models.IntegerField('Liczba członków drużyny')
     name = models.CharField('Nazwa drużyny', max_length=80)
-    overtime_number = models.IntegerField('Liczba podana w pytaniu dogrywkowym', blank=True, null=True)
+    overtime_answer = models.IntegerField('Liczba podana w pytaniu dogrywkowym', blank=True, null=True)
 
     def __str__(self):
         return self.name
