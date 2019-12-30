@@ -22,7 +22,7 @@
                     <tbody>
                         {% for team in sorted_teams %}
 
-                            {% if team.id == overtime_winning_team_pk %}
+                            {% if team.id == overtime_winning_team.pk %}
                                 <tr class="closest-number-row">
                             {% elif forloop.counter == 1 %}
                                 <tr class="first-place-row">
@@ -48,7 +48,7 @@
                                     <td>{{ team.third_round_sum|default_if_none:"-" }}</td>
                                     <td>{{ team.overtime_answer|default_if_none:"-" }}</td>
                                     <td>
-                                        {% if team.pk == overtime_winning_team_pk %}
+                                        {% if team.pk == overtime_winning_team.pk %}
                                             <i class="fa fa-bullseye"></i><i class="fa fa-exclamation"></i>
                                         {% endif %}
                                     </td>

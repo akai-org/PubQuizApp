@@ -13,12 +13,12 @@ def scoreboard(request):
         third_round_sum=Sum("point_changes__scoring", filter=Q(point_changes__round_number=3)),
         difference=Abs(F('overtime_answer') - correct_overtime_answer)
     )
-    overtime_winning_team_pk = sorted_teams.order_by('difference').first().pk
+    overtime_winning_team = sorted_teams.order_by('difference').first()
     total_people = sorted_teams.aggregate(Sum('people'))['people__sum']
     context = {
         'sorted_teams': sorted_teams,
         'amount_of_people': total_people,
-        'overtime_winning_team_pk': overtime_winning_team_pk
+        'overtime_winning_team_pk': overtime_winning_team
     }
 
     return render(request, 'scoreboard.html', context)
