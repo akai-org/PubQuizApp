@@ -14,11 +14,13 @@ def scoreboard(request):
         difference=Abs(F('overtime_answer') - correct_overtime_answer)
     )
     overtime_winning_team = sorted_teams.order_by('difference').first()
+    if not overtime_winning_team.overtime_answer:
+        overtime_winning_team.id = 0
     total_people = sorted_teams.aggregate(Sum('people'))['people__sum']
     context = {
         'sorted_teams': sorted_teams,
         'amount_of_people': total_people,
-        'overtime_winning_team_pk': overtime_winning_team
+        'overtime_winning_team_id': overtime_winning_team.id
     }
 
     return render(request, 'scoreboard.html', context)
