@@ -11,6 +11,8 @@
 8. Migrate database: `python manage.py migrate`,
 9. To run dev server: `python manage.py runserver`
 
+**Notice:** Sometimes the app may not run and throw errors concerning None values on the main site. To fix that one must login into admin panel and visit GamePreferences so they can bootstrap. Error should be gone then.
+
 ## Tips for devs
 
 ### Dumping pip installations into the file
