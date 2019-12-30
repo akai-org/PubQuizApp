@@ -1,7 +1,12 @@
 from django.contrib import admin
 from preferences.admin import PreferencesAdmin
 from .src import synchronizers
-from .models import Team, GamePreferences
+from .models import Team, PointChange, GamePreferences
+
+
+class PointChangeInline(admin.StackedInline):
+    model = PointChange
+    extra = 1
 
 
 class TeamAdmin(admin.ModelAdmin):
@@ -9,6 +14,7 @@ class TeamAdmin(admin.ModelAdmin):
     list_display = ('name_of_team', 'number_of_teammates', 'overtime_number', 'number_of_points')
     list_filter = ['number_of_points']
     search_fields = ['name_of_team']
+    inlines = [PointChangeInline]
 
     def get_form(self, request, obj=None, **kwargs):
         if obj:
@@ -56,5 +62,6 @@ class GamePreferencesAdmin(PreferencesAdmin):
         return False
 
 
+admin.site.site_header = 'PUB Quiz'
 admin.site.register(Team, TeamAdmin)
 admin.site.register(GamePreferences, GamePreferencesAdmin)

@@ -94,6 +94,7 @@ static/dist/*.ttf
 static/dist/*.svg
 static/dist/*.eot
 package-lock.json
+./*/migrations/0*
 
 # VS code
 .vscode/

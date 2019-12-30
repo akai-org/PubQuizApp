@@ -7,7 +7,7 @@ class Team(models.Model):
     number_of_points = models.IntegerField('Liczba punktów', default=0)
     name_of_team = models.CharField('Nazwa drużyny', max_length=80)
     overtime_number = models.IntegerField('Liczba podana w pytaniu dogrywkowym', blank=True, null=True)
-    
+
     def __str__(self):
         return self.name_of_team
 
@@ -21,3 +21,12 @@ class GamePreferences(Preferences):
     st_place_reward = models.FloatField(default=0, verbose_name="Nagroda za pierwsze miejsce [zł]")
     nd_place_reward = models.FloatField(default=0, verbose_name="Nagroda za drugie miejsce [zł]")
     rd_place_reward = models.FloatField(default=0, verbose_name="Nagroda za trzecie miejsce [zł]")
+
+
+class PointChange(models.Model):
+    scoring = models.IntegerField('Liczba punktów (może być ujemna)', default=0)
+    round_number = models.IntegerField('Numer rundy', default=0)
+    team = models.ForeignKey(Team,
+                             on_delete=models.CASCADE,
+                             verbose_name='Drużyna',
+                             related_name='point_changes')
